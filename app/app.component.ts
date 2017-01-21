@@ -1,9 +1,29 @@
 /**
  * Created by natha on 21.01.2017.
  */
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {ipcRenderer} from 'electron';
+
 @Component({
-    selector: 'my-app',
-    template: '<h1>My first App with Angular2 and Electron</h1>'
+    selector: 'beamer-app',
+    template: `<router-outlet></router-outlet>
+    `
 })
-export class AppComponent { }
+export class AppComponent implements OnInit{
+    randomNumber:Number = 0;
+
+    constructor(private router: Router) {
+        this.randomNumber = Math.random();
+    }
+
+    ngOnInit(): void {
+        ipcRenderer.send('init-done', 'done');
+        if (typeof ipcRenderer != 'undefined') {
+            ipcRenderer.on('elect-redirect-to', (event, arg) => {
+                console.log(arg);
+                this.router.navigate([arg]);
+            });
+        }
+    }
+}
