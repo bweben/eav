@@ -1,6 +1,6 @@
 <div id="video-wrapper" *ngFor="let media of medias">
-    <img *ngIf="media.type === 2" [style.filter]="getStyle()" [style.opacity]="media.opacity" src="{{media.src}}">
-    <video #videoP *ngIf="media.type === 1" [style.opacity]="media.opacity" id="{{'video' + media.id}}" class="player" muted>
+    <img *ngIf="media.type === mediaType.Image" [style.filter]="getStyle()" [style.opacity]="media.opacity" src="{{media.src}}">
+    <video #videoP *ngIf="media.type === mediaType.Video" [style.opacity]="media.opacity" id="{{'video' + media.id}}" class="player" muted>
         <source src="{{media.src}}">
         Your browser does not support HTML5 video
     </video>

@@ -5,10 +5,11 @@ html, body {
 body {
     margin:0 !important;
     padding:0;
-    background-color: black;
+    background-color: black; !important;
 }
 
 #video-wrapper {
+    background-color: black;
     position: fixed;
     top: 0;
     right: 0;
