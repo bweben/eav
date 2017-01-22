@@ -1,0 +1,31 @@
+html, body {
+    height:100%;
+}
+
+body {
+    margin:0 !important;
+    padding:0;
+    background-color: black;
+}
+
+#video-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+#video-wrapper > .player {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor:pointer;
+}
+
+#video1 {
+    opacity: 0.0;
+}

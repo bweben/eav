@@ -17,7 +17,7 @@ let hasSended = false;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 800, height: 600});
-    secWindow = new BrowserWindow({width: 400, height: 600});
+    secWindow = new BrowserWindow({width: 400, height: 600, frame: false});
     let electScreen = electron.screen;
 
     // and load the beamer.html of the app.
