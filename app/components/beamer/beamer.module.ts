@@ -4,9 +4,10 @@
 import { NgModule }      from '@angular/core';
 
 import { BeamerComponent }   from './beamer.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-    imports:      [],
+    imports:      [CommonModule],
     declarations: [ BeamerComponent ],
     exports: [ BeamerComponent ]
 })

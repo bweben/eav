@@ -1,8 +1,13 @@
 /**
  * Created by natha on 21.01.2017.
  */
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, ViewChildren} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
+
+export enum Mediatype {
+    Image,
+    Video
+}
 
 @Component({
     selector: 'beamer-display',
@@ -13,19 +18,23 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class BeamerComponent {
     randomNumber:Number = 0;
     brightPerc:Number = 0;
-    @ViewChild('video1') videoPlayer1;
-    @ViewChild('video2') videoPlayer2;
+    medias:Object[];
+    @ViewChildren('videoP') videos;
 
     constructor(private sanitizer:DomSanitizer) {
         this.randomNumber = 1;
         this.brightPerc = 20;
+        this.medias = [{id: 1, type: 1, opacity: 0.5, src: './assets/vids/ticino.mp4'},{id: 2, type: 1, opacity: 0.8, src: './assets/vids/P1190438_1.mp4'}];
     }
 
     ngAfterViewInit() {
-        /*this.videoPlayer1.loop = true;
-        this.videoPlayer2.loop = true;
-        this.videoPlayer1.play();
-        this.videoPlayer2.play();*/
+        console.log(this.videos);
+        for (let i = 0; i < this.videos._results.length; i++) {
+            console.log(this.videos._results[i]);
+            let video = this.videos._results[i];
+            video.nativeElement.autoplay = true;
+            video.nativeElement.play();
+        }
     }
 
     getStyle() {
