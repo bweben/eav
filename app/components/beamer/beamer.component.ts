@@ -25,7 +25,7 @@ export class BeamerComponent {
     constructor(public zone: NgZone, private sanitizer:DomSanitizer) {
         this.randomNumber = 1;
         this.brightPerc = 20;
-        this.medias = [{id: 1, type: 2, opacity: 0.5, src: './assets/imgs/html.jpg'},{id: 2, type: 2, opacity: 0.8, src: './assets/imgs/ice-On-Mount-Mckinley.jpg'}];
+        this.medias = [{id: 1, type: 1, opacity: 0.5, src: './assets/vids/hallo.mp4'},{id: 2, type: 2, opacity: 0.8, src: './assets/imgs/ice-On-Mount-Mckinley.jpg'}];
     }
 
     ngOnInit() {

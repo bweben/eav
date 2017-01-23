@@ -1,0 +1,12 @@
+<h1>Dashboard</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">Displays</div>
+    <div class="panel-body">
+        <div class="btn-group" role="group" aria-label="...">
+            <button *ngFor="let display of displays" (click)="onSelect(display)" type="button" class="btn btn-default">
+                click <span class="badge">{{display.id}}</span></button>
+        </div>
+    </div>
+</div>
+<label for="brightChange" class="form-control">Change Brightness: </label>
+<input id="brightChange" [(ngModel)]="brightness" (change)="sendBrightness()" type="range" min="0" max="100">

@@ -9,14 +9,7 @@ import {ipcRenderer} from 'electron';
 
 @Component({
     selector: 'dasboard-overview',
-    template: `
-    <h1>Dashboard</h1>
-    <button *ngFor="let display of displays" (click)="onSelect(display)">
-    click <span class="badge">{{display.id}}</span>
-    </button>
-    <label for="brightChange">Change Brightness: </label>
-    <input id="brightChange" [(ngModel)]="brightness" (change)="sendBrightness()" type="range" min="0" max="100">
-`
+    templateUrl: 'app/components/dashboard/dashboard.component.html'
 })
 export class DashboardComponent implements OnInit{
     displays: Object[];
