@@ -9,18 +9,19 @@ import {ipcRenderer} from 'electron';
 
 @Component({
     selector: 'dasboard-overview',
-    template: `
-    <h1>Dashboard</h1>
-    <div *ngFor="let display of displays" (click)="onSelect(display)">
-        <p>{{display.id}}</p>
-    </div>
-`
+    templateUrl: 'app/components/dashboard/dashboard.component.html'
 })
 export class DashboardComponent implements OnInit{
     displays: Object[];
+    brightness:Number;
 
     constructor(public zone: NgZone) {
         this.displays = [];
+        this.brightness = 100;
+    }
+
+    sendBrightness() {
+        ipcRenderer.send('brightness-changed', this.brightness);
     }
 
     ngOnInit(): void {
