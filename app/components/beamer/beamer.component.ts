@@ -4,11 +4,9 @@
 import {Component, ViewChildren, NgZone} from '@angular/core';
 import {ipcRenderer} from 'electron';
 import {DomSanitizer} from "@angular/platform-browser";
+import {Mediatype} from "../../shared/enum/mediaType";
 
-enum Mediatype {
-    Image,
-    Video
-}
+
 
 @Component({
     selector: 'beamer-display',
@@ -26,7 +24,7 @@ export class BeamerComponent {
     constructor(public zone: NgZone, private sanitizer:DomSanitizer) {
         this.randomNumber = 1;
         this.brightPerc = 20;
-        this.medias = [{id: 1, type: Mediatype.Video, opacity: 0.5, src: './assets/vids/ticino.mp4'},{id: 2, type: Mediatype.Video, opacity: 0.8, src: './assets/vids/P1190438_1.mp4'}];
+        this.medias = [{id: 2, type: Mediatype.Image, opacity: 0.5, src: './assets/imgs/Komp 3.mp4.00_00_07_01.Standbild001.png'},{id: 1, type: Mediatype.Image, opacity: 0.5, src: './assets/imgs/DJI_0004.00_01_22_24.Standbild004.png'}];
     }
 
     ngOnInit() {
@@ -40,12 +38,12 @@ export class BeamerComponent {
     }
 
     ngAfterViewInit() {
-        console.log(this.videos);
         for (let i = 0; i < this.videos._results.length; i++) {
-            console.log(this.videos._results[i]);
             let video = this.videos._results[i];
             video.nativeElement.autoplay = true;
-            video.nativeElement.play();
+            if (video.nativeElement.paused) {
+                video.nativeElement.play();
+            }
         }
     }
 

@@ -7,10 +7,13 @@ import {DashboardComponent}   from './dashboard.component';
 import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from '@angular/forms';
 
+import {MediaPickerModule} from '../mediaPicker/mediaPicker.module';
+
 @NgModule({
     imports:      [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        MediaPickerModule
     ],
     declarations: [ DashboardComponent ],
     exports: [ DashboardComponent ]

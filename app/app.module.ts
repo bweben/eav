@@ -8,13 +8,15 @@ import { AppComponent }   from './app.component';
 import { BeamerModule } from './components/beamer/beamer.module';
 import { DashboardModule } from './components/dashboard/dasboard.module'
 import { AppRoutingModule } from './app-routing.module';
+import {MediaPickerModule} from "./components/mediaPicker/mediaPicker.module";
 
 @NgModule({
     imports:      [
         BrowserModule,
         AppRoutingModule,
         BeamerModule,
-        DashboardModule
+        DashboardModule,
+        MediaPickerModule
     ],
     declarations: [ AppComponent ],
     bootstrap:    [ AppComponent ]

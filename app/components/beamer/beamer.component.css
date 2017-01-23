@@ -8,8 +8,19 @@ body {
     background-color: black; !important;
 }
 
-#video-wrapper {
-    background-color: black;
+.beamer-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black !important;
+    height: 100%;
+    width: 100%;
+}
+
+.video-wrapper {
+    background-color: transparent;
     position: fixed;
     top: 0;
     right: 0;
@@ -18,7 +29,7 @@ body {
     overflow: hidden;
 }
 
-#video-wrapper > .player {
+.video-wrapper > .player {
     position: fixed;
     top: 0;
     left: 0;
@@ -27,7 +38,7 @@ body {
     cursor:pointer;
 }
 
-#video-wrapper > img {
+.video-wrapper > img {
     position: fixed;
     top: 0;
     left: 0;
@@ -35,8 +46,4 @@ body {
     right: 0;
     min-width: 100%;
     min-height: 100%;
-}
-
-#video1 {
-    opacity: 0.0;
 }
