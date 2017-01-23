@@ -49,6 +49,10 @@ function createWindow() {
         secWindow.setPosition(arg.bounds.x + 50, arg.bounds.y + 50);
     });
 
+    ipcMain.on('brightness-changed', (event, arg) => {
+        secWindow.webContents.send('brightness-changed', arg);
+    });
+
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
@@ -56,6 +60,7 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null;
         secWindow = null;
+        app.quit();
     });
 }
 

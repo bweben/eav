@@ -11,16 +11,24 @@ import {ipcRenderer} from 'electron';
     selector: 'dasboard-overview',
     template: `
     <h1>Dashboard</h1>
-    <div *ngFor="let display of displays" (click)="onSelect(display)">
-        <p>{{display.id}}</p>
-    </div>
+    <button *ngFor="let display of displays" (click)="onSelect(display)">
+    click <span class="badge">{{display.id}}</span>
+    </button>
+    <label for="brightChange">Change Brightness: </label>
+    <input id="brightChange" [(ngModel)]="brightness" (change)="sendBrightness()" type="range" min="0" max="100">
 `
 })
 export class DashboardComponent implements OnInit{
     displays: Object[];
+    brightness:Number;
 
     constructor(public zone: NgZone) {
         this.displays = [];
+        this.brightness = 100;
+    }
+
+    sendBrightness() {
+        ipcRenderer.send('brightness-changed', this.brightness);
     }
 
     ngOnInit(): void {
