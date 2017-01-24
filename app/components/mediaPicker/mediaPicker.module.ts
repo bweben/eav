@@ -10,8 +10,7 @@ import {CommonModule} from '@angular/common';
 @NgModule({
     imports: [
         BrowserModule,
-        FormsModule,
-        CommonModule
+        FormsModule
     ],
     declarations: [MediaPickerComponent],
     exports: [MediaPickerComponent]

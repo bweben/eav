@@ -1,11 +1,14 @@
 <div class="row">
-    <div class="col-xs-6 col-md-6" *ngFor="let media for medias">
-        <a href="#" class="thumbnail" (click)="openFileUpload()" (dragover)="false" (dragend)="false" (drop)="fileUpload($event)">
-            <p *ngIf="!media.type"></p>
-            <img *ngIf="media.type === mediaType.Image" src="media.src">
+    <div class="col-xs-6 col-md-6" *ngFor="let media of medias">
+        <div href="#" class="thumbnail" (click)="openFileUpload()" (dragover)="false" (dragend)="false" (drop)="fileUpload($event,medias.indexOf(media))">
+            <p *ngIf="!media.type">Drag into this</p>
+            <img *ngIf="media.type === mediaType.Image" src="{{media.src}}">
             <video *ngIf="media.type === mediaType.Video" muted>
-                <source src="media.src">
+                <source src="{{media.src}}">
             </video>
-        </a>
+        </div>
+        <div>
+            <input [(ngModel)]="media.opacity" (change)="sendMedia()" type="range" min="0" max="1" step="any">
+        </div>
     </div>
 </div>

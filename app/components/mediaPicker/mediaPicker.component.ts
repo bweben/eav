@@ -12,7 +12,7 @@ import {Mediatype} from "../../shared/enum/mediaType";
 })
 
 export class MediaPickerComponent {
-    medias:Media;
+    medias = [{opacity:1},{opacity:1}];
     mediaType = Mediatype;
 
     constructor() {
@@ -20,13 +20,33 @@ export class MediaPickerComponent {
     }
 
     openFileUpload():void {
-        this.fileUpload(null, "test");
+        this.fileUpload(null,0, "test");
     }
 
-    fileUpload(e, src?:String):void {
-        var files:File = e.dataTransfer.files;
+    fileUpload(e, place, src?:String):boolean {
+        let files: File = e.dataTransfer.files;
         Object.keys(files).forEach((key) => {
             console.log(files[key]);
-        })
+            let file = files[key];
+            let media:Media = new Media();
+
+            if (file.type.split('/')[0] === "image") {
+                media.type = Mediatype.Image;
+            } else {
+                media.type = Mediatype.Video;
+            }
+            media.id = new Date().getUTCMilliseconds();
+            media.opacity = 1;
+            media.src = "file:///" + file.path;
+            this.medias[place] = media;
+        });
+
+        this.sendMedia();
+
+        return false;
+    }
+
+    sendMedia() {
+        ipcRenderer.send('media-changed', this.medias);
     }
 }

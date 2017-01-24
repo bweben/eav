@@ -5,7 +5,7 @@ import {Mediatype} from '../enum/mediaType'
 
 export class Media {
     type:Mediatype;
-    opacity:Number;
+    opacity:number;
     id:Number;
     src:String;
 

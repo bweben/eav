@@ -53,6 +53,10 @@ function createWindow() {
         secWindow.webContents.send('brightness-changed', arg);
     });
 
+    ipcMain.on('media-changed', (event, arg) => {
+        secWindow.webContents.send('media-changed', arg);
+    });
+
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
