@@ -34,11 +34,19 @@ export class BeamerComponent {
 
         ipcRenderer.on('media-changed', (event, arg) => {
             this.zone.run(() => this.medias = arg);
-
+            this.playVideos();
         });
+
+        ipcRenderer.on('opacity-changed', (event, arg) => {
+            this.zone.run(() => this.medias = arg);
+        })
     }
 
     ngAfterViewInit() {
+        this.playVideos();
+    }
+
+    playVideos() {
         for (let i = 0; i < this.videos._results.length; i++) {
             let video = this.videos._results[i];
             video.nativeElement.autoplay = true;
