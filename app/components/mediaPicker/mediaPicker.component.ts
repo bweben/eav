@@ -8,7 +8,8 @@ import {Mediatype} from "../../shared/enum/mediaType";
 
 @Component({
     selector: 'custom-media-picker',
-    templateUrl: 'app/components/mediaPicker/mediaPicker.component.html'
+    templateUrl: 'app/components/mediaPicker/mediaPicker.component.html',
+    styleUrls: ['app/components/mediaPicker/mediaPicker.component.css']
 })
 
 export class MediaPickerComponent {
@@ -19,12 +20,17 @@ export class MediaPickerComponent {
 
     }
 
-    openFileUpload():void {
-        this.fileUpload(null,0, "test");
-    }
-
     fileUpload(e, place, src?:String):boolean {
-        let files: File = e.dataTransfer.files;
+        if (!e) {
+            return true;
+        }
+
+        let files: File;
+        if (e.dataTransfer) {
+            files = e.dataTransfer.files;
+        } else{
+            files = e.srcElement.files;
+        }
         Object.keys(files).forEach((key) => {
             console.log(files[key]);
             let file = files[key];
