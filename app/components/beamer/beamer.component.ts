@@ -34,6 +34,7 @@ export class BeamerComponent {
 
         ipcRenderer.on('media-changed', (event, arg) => {
             this.zone.run(() => this.medias = arg);
+
         });
     }
 

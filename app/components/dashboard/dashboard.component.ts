@@ -14,6 +14,7 @@ import {ipcRenderer} from 'electron';
 export class DashboardComponent implements OnInit{
     displays: Object[];
     brightness:Number;
+    full:boolean = false;
 
     constructor(public zone: NgZone) {
         this.displays = [];
@@ -35,5 +36,10 @@ export class DashboardComponent implements OnInit{
 
     onSelect(display: Object): void {
         ipcRenderer.send('selected-display', display);
+    }
+
+    fullscreen():void {
+        this.full = !this.full;
+        ipcRenderer.send('make-fullscreen', this.full);
     }
 }

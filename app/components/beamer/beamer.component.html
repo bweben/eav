@@ -1,9 +1,14 @@
 <div class="beamer-wrapper">
-<div class="video-wrapper" *ngFor="let media of medias" [style.filter]="getStyle()">
-    <img *ngIf="media.type === mediaType.Image" [style.opacity]="media.opacity" src="{{media.src}}">
-    <video #videoP *ngIf="media.type === mediaType.Video" [style.opacity]="media.opacity" id="{{'video' + media.id}}" class="player" muted>
-        <source src="{{media.src}}">
-        Your browser does not support HTML5 video
-    </video>
-</div>
+    <div class="text-wrapper">
+        <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+        </p>
+    </div>
+    <div class="video-wrapper" *ngFor="let media of medias" [style.filter]="getStyle()">
+        <img *ngIf="media.type === mediaType.Image" [style.opacity]="media.opacity" src="{{media.src}}">
+        <video #videoP *ngIf="media.type === mediaType.Video" [style.opacity]="media.opacity" id="{{'video' + media.id}}" class="player" muted>
+            <source src="{{media.src}}">
+            Your browser does not support HTML5 video
+        </video>
+    </div>
 </div>

@@ -57,6 +57,10 @@ function createWindow() {
         secWindow.webContents.send('media-changed', arg);
     });
 
+    ipcMain.on('make-fullscreen', (event, arg) => {
+        secWindow.setFullScreen(arg);
+    });
+
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
