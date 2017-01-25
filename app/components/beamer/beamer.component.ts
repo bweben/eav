@@ -36,6 +36,10 @@ export class BeamerComponent {
             this.zone.run(() => this.medias = arg);
             this.playVideos();
         });
+
+        ipcRenderer.on('opacity-changed', (event, arg) => {
+            this.zone.run(() => this.medias = arg);
+        })
     }
 
     ngAfterViewInit() {
