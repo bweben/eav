@@ -16,9 +16,9 @@ let hasSended = false;
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({width: 800, height: 600});
-    secWindow = new BrowserWindow({width: 400, height: 600, frame: false});
     let electScreen = electron.screen;
+    mainWindow = new BrowserWindow(electScreen.getPrimaryDisplay().workAreaSize);
+    secWindow = new BrowserWindow({width: 400, height: 600, frame: false});
 
     // and load the beamer.html of the app.
     mainWindow.loadURL(url.format({
@@ -59,6 +59,10 @@ function createWindow() {
 
     ipcMain.on('make-fullscreen', (event, arg) => {
         secWindow.setFullScreen(arg);
+    });
+
+    ipcMain.on('opacity-changed', (event, arg) => {
+        secWindow.webContents.send('opacity-changed', arg);
     });
 
     // Emitted when the window is closed.

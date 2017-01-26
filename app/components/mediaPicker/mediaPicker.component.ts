@@ -14,6 +14,7 @@ import {Mediatype} from "../../shared/enum/mediaType";
 
 export class MediaPickerComponent {
     medias = [{opacity:1},{opacity:1}];
+    opacity = 1;
     mediaType = Mediatype;
 
     constructor() {
@@ -21,6 +22,7 @@ export class MediaPickerComponent {
     }
 
     fileUpload(e, place, src?:String):boolean {
+        console.log("hallo");
         if (!e) {
             return true;
         }
@@ -54,5 +56,12 @@ export class MediaPickerComponent {
 
     sendMedia() {
         ipcRenderer.send('media-changed', this.medias);
+    }
+
+    sendOpacity() {
+        if (this.medias.length > 1) {
+            this.medias[1].opacity = this.opacity;
+            ipcRenderer.send('opacity-changed', this.opacity);
+        }
     }
 }

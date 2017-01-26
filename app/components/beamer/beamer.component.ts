@@ -5,6 +5,7 @@ import {Component, ViewChildren, NgZone} from '@angular/core';
 import {ipcRenderer} from 'electron';
 import {DomSanitizer} from "@angular/platform-browser";
 import {Mediatype} from "../../shared/enum/mediaType";
+import {Media} from "../../shared/video/Media";
 
 
 
@@ -17,13 +18,13 @@ import {Mediatype} from "../../shared/enum/mediaType";
 export class BeamerComponent {
     randomNumber:Number = 0;
     brightPerc:Number = 0;
-    medias:Object[];
+    medias:Media[];
     mediaType = Mediatype;
     @ViewChildren('videoP') videos;
 
     constructor(public zone: NgZone, private sanitizer:DomSanitizer) {
         this.randomNumber = 1;
-        this.brightPerc = 20;
+        this.brightPerc = 0;
         this.medias = [];
     }
 
@@ -38,7 +39,9 @@ export class BeamerComponent {
         });
 
         ipcRenderer.on('opacity-changed', (event, arg) => {
-            this.zone.run(() => this.medias = arg);
+            if (this.medias.length > 1) {
+                this.zone.run(() => this.medias[1].opacity = arg)
+            }
         })
     }
 
@@ -50,6 +53,7 @@ export class BeamerComponent {
         for (let i = 0; i < this.videos._results.length; i++) {
             let video = this.videos._results[i];
             video.nativeElement.autoplay = true;
+            video.nativeElement.loop = true;
             if (video.nativeElement.paused) {
                 video.nativeElement.play();
             }

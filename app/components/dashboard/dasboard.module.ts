@@ -8,12 +8,14 @@ import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from '@angular/forms';
 
 import {MediaPickerModule} from '../mediaPicker/mediaPicker.module';
+import {BeamerModule} from "../beamer/beamer.module";
 
 @NgModule({
     imports:      [
         BrowserModule,
         FormsModule,
-        MediaPickerModule
+        MediaPickerModule,
+        BeamerModule
     ],
     declarations: [ DashboardComponent ],
     exports: [ DashboardComponent ]

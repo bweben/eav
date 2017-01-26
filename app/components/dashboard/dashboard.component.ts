@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit{
 
     constructor(public zone: NgZone) {
         this.displays = [];
-        this.brightness = 100;
+        this.brightness = 0;
     }
 
     sendBrightness() {
@@ -29,7 +29,6 @@ export class DashboardComponent implements OnInit{
         if (typeof ipcRenderer != 'undefined') {
             ipcRenderer.once('all-displays', (event, arg) => {
                 this.zone.run(() => this.displays = arg);
-                console.log(arg);
             });
         }
     }

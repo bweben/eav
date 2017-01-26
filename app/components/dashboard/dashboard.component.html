@@ -1,14 +1,26 @@
-<h1>Dashboard</h1>
-<div class="panel panel-default">
-    <div class="panel-heading">Displays</div>
-    <div class="panel-body">
-        <div class="btn-group" role="group" aria-label="...">
-            <button *ngFor="let display of displays" (click)="onSelect(display)" type="button" class="btn btn-default">
-                click <span class="badge">{{display.id}}</span></button>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <h1>Dashboard</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading">Displays</div>
+                <div class="panel-body">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button *ngFor="let display of displays" (click)="onSelect(display)" type="button"
+                                class="btn btn-default">
+                            click <span class="badge">{{display.id}}</span></button>
+                    </div>
+                    <button class="btn btn-default" (click)="fullscreen()">Fullscreen</button>
+                </div>
+            </div>
+            <label for="brightChange" class="form-control">Change Brightness: </label>
+            <input id="brightChange" [(ngModel)]="brightness" (input)="sendBrightness()" type="range" min="0" max="100">
         </div>
-        <button class="btn btn-default" (click)="fullscreen()">Fullscreen</button>
+        <div class="col-lg-4">
+            <!-- <beamer-display></beamer-display> -->
+        </div>
+    </div>
+    <div class="row">
+        <custom-media-picker></custom-media-picker>
     </div>
 </div>
-<label for="brightChange" class="form-control">Change Brightness: </label>
-<input id="brightChange" [(ngModel)]="brightness" (change)="sendBrightness()" type="range" min="0" max="100">
-<custom-media-picker></custom-media-picker>
