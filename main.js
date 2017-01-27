@@ -51,18 +51,23 @@ function createWindow() {
 
     ipcMain.on('brightness-changed', (event, arg) => {
         secWindow.webContents.send('brightness-changed', arg);
+        mainWindow.webContents.send('brightness-changed', arg);
     });
 
     ipcMain.on('media-changed', (event, arg) => {
         secWindow.webContents.send('media-changed', arg);
+        mainWindow.webContents.send('media-changed', arg);
     });
 
     ipcMain.on('make-fullscreen', (event, arg) => {
         secWindow.setFullScreen(arg);
+        let bound = secWindow.getSize();
+        mainWindow.webContents.send('aspect-ratio-change', bound[0] / bound[1]);
     });
 
     ipcMain.on('opacity-changed', (event, arg) => {
         secWindow.webContents.send('opacity-changed', arg);
+        mainWindoww.webContents.send('opacity-changed', arg);
     });
 
     // Emitted when the window is closed.

@@ -15,10 +15,12 @@ export class DashboardComponent implements OnInit{
     displays: Object[];
     brightness:Number;
     full:boolean = false;
+    width;
 
     constructor(public zone: NgZone) {
         this.displays = [];
         this.brightness = 0;
+        this.width = 1;
     }
 
     sendBrightness() {
@@ -29,6 +31,10 @@ export class DashboardComponent implements OnInit{
         if (typeof ipcRenderer != 'undefined') {
             ipcRenderer.once('all-displays', (event, arg) => {
                 this.zone.run(() => this.displays = arg);
+            });
+
+            ipcRenderer.on('aspect-ratio-change', (event, arg) => {
+                this.zone.run(() => this.width = arg);
             });
         }
     }
